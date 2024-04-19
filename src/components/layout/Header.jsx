@@ -28,6 +28,7 @@ import { useNavigate } from "react-router-dom";
 
 // ______________________________________________________
 function Header() {
+  
   const [isSearch, setIsSearch] = useState(false);
   const [isGroup, setIsGroup] = useState(false);
   const [isNotification, setIsNotification] = useState(false);

@@ -21,7 +21,7 @@ const Applayout = () => (WrappedComponent) => {
               display: { xs: "none", sm: "block" },
             }}
           >
-            <ChatList chats={[1,2,3,4,5,6]}/>
+            <ChatList chats={[1, 2, 3, 4, 5, 6,7]} />
           </Grid>
           <Grid
             item

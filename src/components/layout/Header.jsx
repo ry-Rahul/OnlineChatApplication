@@ -7,9 +7,9 @@ import {
   Typography,
   IconButton,
   Tooltip,
-    Backdrop,
+  Backdrop,
 } from "@mui/material";
-import { orange, green } from "../../constants/color";
+import { orange, green, darkGreen } from "../../constants/color";
 import {
   Menu as MenuIcon,
   Search as SearchIcon,
@@ -28,7 +28,6 @@ import { useNavigate } from "react-router-dom";
 
 // ______________________________________________________
 function Header() {
-  
   const [isSearch, setIsSearch] = useState(false);
   const [isGroup, setIsGroup] = useState(false);
   const [isNotification, setIsNotification] = useState(false);
@@ -64,7 +63,7 @@ function Header() {
   return (
     <div>
       <Box sx={{ flexGrow: 1 }} height={"4rem"}>
-        <AppBar position="static" sx={{ bgcolor: orange }}>
+        <AppBar position="static" sx={{ bgcolor: "#3a5a40" }}>
           <Toolbar>
             <Typography
               variant="h6"
@@ -119,13 +118,13 @@ function Header() {
 
       {isSearch && (
         <Suspense fallback={<Backdrop open />}>
-        <Search />
+          <Search />
         </Suspense>
       )}
 
       {isGroup && (
         <Suspense fallback={<Backdrop open />}>
-        <NewGroupDialog />
+          <NewGroupDialog />
         </Suspense>
       )}
 
@@ -137,6 +136,7 @@ function Header() {
     </div>
   );
 }
+
 
 const IconBtn = ({ title, icon, onClick }) => {
   return (

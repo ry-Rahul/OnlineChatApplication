@@ -34,11 +34,9 @@ const Search = () => {
         // i want to small screen to be full width and height
         // height={"100vh"}
         sx={{
-          width: { xs: "20rem" },
+          width: { xs: "20rem", sm: "25rem"},
           padding: "1rem",
         }}
-
-
         
       >
         <DialogTitle textAlign={"center"}>Search</DialogTitle>

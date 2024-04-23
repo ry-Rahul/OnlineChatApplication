@@ -1,13 +1,8 @@
-import React from 'react'
+import React from "react";
+import Applayout from "../components/layout/Applayout";
 
 function Chat() {
-
-
-  return (
-    <div>
-asdf
-    </div>
-  )
+  return <div>Chat</div>;
 }
 
-export default Chat
+export default Applayout()(Chat);

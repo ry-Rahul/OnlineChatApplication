@@ -62,8 +62,8 @@ function Header() {
 
   return (
     <div>
-      <Box sx={{ flexGrow: 1 }} height={"4rem"}>
-        <AppBar position="static" sx={{ bgcolor: "#3a5a40" }}>
+      <Box sx={{ flexGrow: 1 }} height={"4rem"} >
+        <AppBar position="static" sx={{ bgcolor: orange }}>
           <Toolbar>
             <Typography
               variant="h6"
@@ -136,7 +136,6 @@ function Header() {
     </div>
   );
 }
-
 
 const IconBtn = ({ title, icon, onClick }) => {
   return (

@@ -1,16 +1,16 @@
 import React from "react";
-import Header from "../components/layout/Header";
-import Title from "../components/shared/Title";
 import Applayout from "../components/layout/Applayout";
+import { Box, Typography } from "@mui/material";
+
 
 const Home = () => {
   return (
-    <>
-      <div>
-        <h1>Home</h1>
-      </div>
-    </>
+    <Box bgcolor={"rgba(0,0,0,0.1)"} height={"100%"}>
+      <Typography p={"2rem"} variant="h5" textAlign={"center"}>
+        Select a friend to chat
+      </Typography>
+    </Box>
   );
-}
+};
 
 export default Applayout()(Home);

@@ -5,9 +5,7 @@ import { Add as AddIcon } from "@mui/icons-material";
 function UserItem({ user, handler, handlerIsLoading }) {
   const { name, _id, avatar } = user;
   return (
-    
-    <ListItem >
-
+    <ListItem>
       <Stack
         direction={"row"}
         spacing={"1rem"}
@@ -18,12 +16,13 @@ function UserItem({ user, handler, handlerIsLoading }) {
         <Typography
           variant="body1"
           sx={{
-            flexGrow: 1,
-            // display: "-webkit-box",
-            // WebkitLineClamp: 1,
-            // WebkitBoxOrient: "vertical",
-            // overflow: "hidden",
-            // textOverflow: "ellipsis",
+            flexGlow: 1,
+            width: "100%",
+            display: "-webkit-box",
+            WebkitLineClamp: 1,
+            WebkitBoxOrient: "vertical",
+            overflow: "hidden",
+            textOverflow: "ellipsis",
           }}
         >
           {name}

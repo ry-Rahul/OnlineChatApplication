@@ -9,13 +9,10 @@ import {
   Stack,
   TextField,
 } from "@mui/material";
-import React ,{useState} from "react";
+import React, { useState } from "react";
 import { Search as SearchIcon } from "@mui/icons-material";
 import UserItem from "../shared/UserItem";
 import { sampleUsers } from "../../constants/sampleData";
-
-
-
 
 // ______________________________________________________
 const Search = () => {
@@ -27,10 +24,23 @@ const Search = () => {
 
   const addFriendHandler = (id) => {
     console.log("Add friend", id);
-  }
+  };
   return (
     <Dialog open>
-      <Stack padding={"2rem"} direction={"column"} width={"25rem"}>
+      <Stack
+        padding={"2rem"}
+        direction={"column"}
+        width={"25rem"}
+        // i want to small screen to be full width and height
+        // height={"100vh"}
+        sx={{
+          width: { xs: "20rem" },
+          padding: "1rem",
+        }}
+
+
+        
+      >
         <DialogTitle textAlign={"center"}>Search</DialogTitle>
         <TextField
           label="Search"
@@ -49,14 +59,15 @@ const Search = () => {
 
         <List>
           {users.map((user) => {
-              return <UserItem
+            return (
+              <UserItem
                 user={user}
                 key={user._id}
                 handler={addFriendHandler}
                 handlerIsLoading={isLoadingSendFriendRequest}
               />
-          })} 
-
+            );
+          })}
         </List>
       </Stack>
     </Dialog>

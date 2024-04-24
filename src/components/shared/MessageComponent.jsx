@@ -2,6 +2,8 @@ import { Box, Typography } from "@mui/material";
 import React, { memo } from "react";
 import { lightBlue } from "../../constants/color";
 import moment from "moment";
+import { fileFormat } from "../../lib/features";
+import RenderContent from "./RenderContent";
 
 const MessageComponent = ({ message, user }) => {
   console.log("MessageComponent");
@@ -27,18 +29,16 @@ const MessageComponent = ({ message, user }) => {
       )}
       {content && <Typography>{content}</Typography>}
       {attachments.length > 0 &&
-        attachments.map((attachment,index) => {
+        attachments.map((attachment, index) => {
           const url = attachment.url;
-          const file = "meawwww";
+          const file = fileFormat(url);
 
           return (
             <Box key={index}>
-              <a
-                href={url}
-                target="_blank"
-                download
-                style={{ color: "black" }}
-              ></a>
+              <a href={url} target="_blank" download style={{ color: "black" }}>
+
+                <RenderContent file={file} url={url} />
+              </a>
             </Box>
           );
         })}

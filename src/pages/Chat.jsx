@@ -7,10 +7,18 @@ import {
   Send as SendIcon,
 } from "@mui/icons-material";
 import { InputBox } from "../components/styles/StyledComponents";
+import FileMenu from "../components/dialogs/FileMenu";
+import { sampleMessage } from "../constants/sampleData";
+import MessageComponent from "../components/shared/MessageComponent";
 
+const user = {
+  _id: "adfaasd",
+  name: "Rahul yadav",
+};
 
 function Chat() {
   const containerRef = useRef(null);
+
   return (
     <>
       <Stack
@@ -25,7 +33,9 @@ function Chat() {
           overflowY: "auto",
         }}
       >
-        {/* Chat Messages */}
+        {sampleMessage.map((i) => {
+          return <MessageComponent key={i._id} message={i} user={user} />;
+        })}
       </Stack>
 
       <form
@@ -40,36 +50,41 @@ function Chat() {
           padding={"1rem"}
           position={"relative"}
         >
-          <IconButton sx={{
-             position: "absolute",
-            left: "1rem",
-            padding: "0.5rem",
-            transition: "0.3s",
-            "&:hover": {
-              rotate: "90deg",
-            },
-          }}>
+          <IconButton
+            sx={{
+              position: "absolute",
+              left: "1rem",
+              padding: "0.5rem",
+              transition: "0.3s",
+              "&:hover": {
+                rotate: "90deg",
+              },
+            }}
+          >
             <AttachFileIcon />
           </IconButton>
 
-          <InputBox  placeholder="Type your message here ..."/>
-          <IconButton type="submit" sx={{
-       
-            backgroundColor: orange,
-            color: "white",
-            marginLeft: "1rem",
-            padding: "0.5rem",
-            transition: "0.3s",
-            "&:hover": {
-              
-              backgroundColor:"error.dark",
-              rotate: "-45deg",
-            },
-          }}>
+          <InputBox placeholder="Type your message here ..." />
+          <IconButton
+            type="submit"
+            sx={{
+              backgroundColor: orange,
+              color: "white",
+              marginLeft: "1rem",
+              padding: "0.5rem",
+              transition: "0.3s",
+              "&:hover": {
+                backgroundColor: "error.dark",
+                rotate: "-45deg",
+              },
+            }}
+          >
             <SendIcon />
           </IconButton>
         </Stack>
       </form>
+
+      <FileMenu />
     </>
   );
 }

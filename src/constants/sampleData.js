@@ -56,7 +56,7 @@ export const sampleMessage = [
       name: "Chaman ",
     },
     chat: "chatId",
-    createdAt: "2024-02-12T10:41:30.630Z",
+    createdAt: "2024-04-24T10:41:30.630Z",
   },
 
   {
@@ -66,14 +66,14 @@ export const sampleMessage = [
         url: "https://www.w3schools.com/howto/img_avatar.png",
       },
     ],
-    content: "",
+    content: "ruk ja",
     _id: "sfnsdjkfsdnfkdddjsbnd",
     sender: {
-      _id: "sdfsdfsdf",
+      _id: "adfaasd",
       name: "Chaman  2",
     },
     chat: "chatId",
-    createdAt: "2024-02-12T10:41:30.630Z",
+    createdAt: "2024-04-24T09:41:30.630Z",
   },
 ];
 

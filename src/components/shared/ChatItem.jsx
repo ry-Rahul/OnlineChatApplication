@@ -20,7 +20,13 @@ function ChatItem({
       to={`/chat/${_id}`}
       onContextMenu={(e) => handleDeleteChat(e, _id, groupChat)}
       sx={{
-        padding: "5px",
+        padding: "0px",
+        overflow: "hidden",
+        border: "1px solid #e0e0e0",
+        borderRadius: "10px",
+        "&:hover": {
+
+        },
       }}
     >
       <div

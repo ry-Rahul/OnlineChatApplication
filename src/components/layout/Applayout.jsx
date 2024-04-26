@@ -32,6 +32,7 @@ const Applayout = () => (WrappedComponent) => {
             md={3}  
             sx={{
               display: { xs: "none", sm: "block" },
+              overflow: "auto",
             }}
           >
             <ChatList

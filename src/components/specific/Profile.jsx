@@ -9,11 +9,13 @@ import {
   GitHub as GitHubIcon,
   Instagram as InstagramIcon,
 } from "@mui/icons-material";
+import { transformImage } from "../../lib/features";
 
-function Profile() {
+function Profile({ user }) {
   return (
     <Stack spacing={"2rem"} directions={"column"} alignItems={"center"}>
       <Avatar
+        src={transformImage(user?.avatar?.url)}
         sx={{
           width: 200,
           height: 200,
@@ -23,20 +25,12 @@ function Profile() {
         }}
       />
 
-      <ProfileCard
-        heading={"bla bla bla"}
-        text={"Rahul yadav"}
-        Icon={<FaceIcon />}
-      />
-      <ProfileCard heading={"Insta"} text={"Insta"} Icon={<InstagramIcon />} />
-      <ProfileCard
-        heading={"bla bla bla"}
-        text={"GitHub"}
-        Icon={<GitHubIcon />}
-      />
+      <ProfileCard heading={"Bio"} text={user.bio} />
+      <ProfileCard heading={"UserName"} text={user?.username} Icon={<UserNameIcon/>} />
+      <ProfileCard heading={"Name"} text={user.name} Icon={<FaceIcon />} />
       <ProfileCard
         heading={"Joined"}
-        text={moment('2024-10-10').fromNow()}
+        text={moment(user?.createdAt).fromNow()}
         Icon={<CalendarIcon />}
       />
     </Stack>

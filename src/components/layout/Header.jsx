@@ -25,21 +25,30 @@ const NewGroupDialog = lazy(() => import("../specific/NewGroup"));
 const NotificationDialog = lazy(() => import("../specific/Notifications"));
 
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
+import { server } from "../../constants/config";
+import { useDispatch, useSelector } from "react-redux";
+import toast from "react-hot-toast";
+import { userNotExists } from "../../redux/reducers/auth";
+import { setIsMobile, setIsSearch } from "../../redux/reducers/misc";
 
 // ______________________________________________________
 function Header() {
-  const [isSearch, setIsSearch] = useState(false);
+
+  const {isSearch} = useSelector((state) => state.misc);
   const [isGroup, setIsGroup] = useState(false);
   const [isNotification, setIsNotification] = useState(false);
 
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+
   const handlemobile = () => {
-    console.log("mobile");
+    dispatch(setIsMobile(true));
   };
 
   const openSearchDiolog = () => {
-    console.log("search");
-    setIsSearch((prev) => !prev);
+    dispatch(setIsSearch(true));
   };
 
   const openNewGroup = () => {
@@ -51,8 +60,16 @@ function Header() {
     navigate("/groups");
   };
 
-  const LogoutHandler = () => {
-    console.log("Logout");
+  const LogoutHandler = async () => {
+    try {
+      const { data } = await axios.get(`${server}/api/v1/user/logout`, {
+        withCredentials: true,
+      });
+      dispatch(userNotExists());
+      toast.success(data.message);
+    } catch (error) {
+      toast.error(error?.response?.data?.message || "Something went wrong");
+    }
   };
 
   const openNotification = () => {
@@ -62,7 +79,7 @@ function Header() {
 
   return (
     <div>
-      <Box sx={{ flexGrow: 1 }} height={"4rem"} >
+      <Box sx={{ flexGrow: 1 }} height={"4rem"}>
         <AppBar position="static" sx={{ bgcolor: orange }}>
           <Toolbar>
             <Typography

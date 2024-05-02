@@ -6,24 +6,26 @@ import { fileFormat } from "../../lib/features";
 import RenderContent from "./RenderContent";
 
 const MessageComponent = ({ message, user }) => {
-  console.log("MessageComponent");
+
   const { sender, content, attachments = [], createdAt } = message;
+
   const timeAgo = moment(createdAt).fromNow();
 
-  const isSameSender = sender?._id === user?._id;
+  const sameSender = sender?._id === user?._id;
+  // console.log("Same sender", sameSender);
   return (
     <div
       style={{
-        alignSelf: isSameSender ? "flex-end" : "flex-start",
-        backgroundColor: isSameSender ? "#dee2e6" : "#dee2e6",
-        color: isSameSender ? "#000" : "#000",
+        alignSelf: sameSender ? "flex-end" : "flex-start",
+        backgroundColor: sameSender ? "#dee2e6" : "#dee2e6",
+        color: sameSender ? "#000" : "#000",
         borderRadius: "5px",
         padding: "0.5rem",
         width: "fit-content",
       }}
     >
-      {!isSameSender && (
-        <Typography color={lightBlue} fontWeight={600} variant="caption">
+        {!sameSender && (
+        <Typography color={lightBlue} fontWeight={"600"} variant="caption">
           {sender.name}
         </Typography>
       )}
@@ -36,7 +38,6 @@ const MessageComponent = ({ message, user }) => {
           return (
             <Box key={index}>
               <a href={url} target="_blank" download style={{ color: "black" }}>
-
                 <RenderContent file={file} url={url} />
               </a>
             </Box>

@@ -35,7 +35,7 @@ const Search = () => {
 
 
   const addFriendHandler = async (id) => {
-    await sendFriendRequest("Sending Friend Request...", {UserId:id});
+    await sendFriendRequest("Sending Friend Request...", {userId:id});
   };
   const searchCloseHandler = () => {
     dispatch(setIsSearch(false));

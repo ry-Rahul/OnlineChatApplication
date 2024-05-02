@@ -10,7 +10,7 @@ import { server } from "./constants/config";
 import { useDispatch, useSelector } from "react-redux";
 import { userExists, userNotExists } from "./redux/reducers/auth";
 import { Toaster } from "react-hot-toast";
-
+import { SocketProvider } from "../Socket";
 
 const Home = lazy(() => import("./pages/Home"));
 const Login = lazy(() => import("./pages/Login"));
@@ -20,21 +20,17 @@ const NotFound = lazy(() => import("./pages/NotFound"));
 const AdminLogin = lazy(() => import("./pages/admin/AdminLogin"));
 const Dashboard = lazy(() => import("./pages/admin/Dashboard"));
 
-
-
 function App() {
-  const {user, loader } = useSelector((state) => state.auth);
-
-
+  const { user, loader } = useSelector((state) => state.auth);
 
   const dispatch = useDispatch();
 
   useEffect(() => {
     axios
-      .get(`${server}/api/v1/user/me` , { withCredentials: true })
+      .get(`${server}/api/v1/user/me`, { withCredentials: true })
       .then(({ data }) => dispatch(userExists(data.user)))
       .catch((err) => dispatch(userNotExists()));
-  }, [dispatch]);  
+  }, [dispatch]);
 
   return loader ? (
     <LayoutLoader />
@@ -42,7 +38,13 @@ function App() {
     <Router>
       <Suspense fallback={<LayoutLoader />}>
         <Routes>
-          <Route element={<ProtectRoute user={user} />}>
+          <Route
+            element={
+              <SocketProvider>
+                <ProtectRoute user={user} />
+              </SocketProvider>
+            }
+          >
             <Route path="/" element={<Home />} />
             <Route path="/groups" element={<Groups />} />
             <Route path="/chat/:chatId" element={<Chat />} />
@@ -68,7 +70,6 @@ function App() {
       </Suspense>
 
       <Toaster position="bottom-center" />
-
     </Router>
   );
 }

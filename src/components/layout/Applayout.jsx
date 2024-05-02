@@ -10,6 +10,7 @@ import { useMyChatsQuery } from "../../redux/api/api";
 import { useDispatch, useSelector } from "react-redux";
 import { setIsMobile } from "../../redux/reducers/misc";
 import { useErrors } from "../../hooks/hook";
+import { getSocket } from "../../../Socket";
 
 const Applayout = () => (WrappedComponent) => {
   return (props) => {
@@ -19,23 +20,30 @@ const Applayout = () => (WrappedComponent) => {
     const { user } = useSelector((state) => state.auth);
     const dispatch = useDispatch();
 
+    // socket ______________________________________________________________
+    const socket = getSocket();
+    // console.log("socket")
+    // console.log("socketid - > " , socket.id);
+
     const { isLoading, data, isError, error, refetch } = useMyChatsQuery("");
 
-    useErrors([{ isError, error  }])
+    useErrors([{ isError, error }]);
 
+    // handle Delete Chat ____________________________________________________
     const handleDeleteChat = (e, _id, groupChat) => {
       e.preventDefault();
       console.log(_id, groupChat);
     };
-    
-    const handlMobileClose = () =>{
-      dispatch(setIsMobile(false))
-    }
+
+    // handle Mobile close ____________________________________________________
+    const handlMobileClose = () => {
+      dispatch(setIsMobile(false));
+    };
     return (
       <>
         {/* <Title /> */}
         <Header />
-{/* 
+        {/* 
         <DeleteChatMenu
           dispatch={dispatch}
           deleteMenuAnchor={deleteMenuAnchor}
@@ -94,7 +102,7 @@ const Applayout = () => (WrappedComponent) => {
             height={"100%"}
             // bgcolor="primary.main"
           >
-            <WrappedComponent {...props} />
+            <WrappedComponent {...props} chatId={chatId} user={user} />
           </Grid>
           {/* __________________________________________________________________________________ */}
 
